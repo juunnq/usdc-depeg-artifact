@@ -1,0 +1,17 @@
+{
+  "status": "OK_REPORTED_EXPOSURE",
+  "on_chain_backing_clean": false,
+  "on_chain_psm_usdc_total": 99.328577,
+  "dai_total_supply_usd": 4193955100.3838315,
+  "reported_psm_usdc": 3100000000.0,
+  "psm_share_of_dai_supply": 0.7391590815353001,
+  "source_collateral_share": 0.36,
+  "reported_source": "The Block, 2023-03-11 (Wayback-captured, contemporaneous): PSM-USDC-A reported at its $3.1B debt ceiling; same source reports 36% USDC share of DAI collateral. See data/n1/dai_psm_2023/psm_source_20230311.json",
+  "block": 16804701,
+  "run_date_utc": "2023-03-11T12:00:00Z",
+  "usdc_depeg_bps": 1233.3,
+  "observed_dai_depeg_bps": 1140.6,
+  "pass_through_if_psm_share_bps": 911.6048952574855,
+  "pass_through_if_collateral_share_bps": 443.98799999999994,
+  "no_decomposition": "No mechanical/panic split is reported. The source gives two ratios with different denominators (PSM-USDC over DAI supply; USDC over total collateral) that imply pass-throughs straddling the observed de-peg, so any residual would be an artifact of the choice of ratio. The USDC->DAI mint leg was capped out at the moment analysed -- the leg whose arbitrage would pull DAI toward USDC -- so the PSM cannot be argued to drive effective pass-through toward 100%; at a pass-through of 1.0 the implied residual is negative, which the prior [0, excess] band could not represent. The on-chain PSM balance at the run-date block reads ~$99, attributed to off-chain custody but not corroborable on-chain, so the reported figure remains a debt-ceiling report, not a custody reading."
+}

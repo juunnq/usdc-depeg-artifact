@@ -1,0 +1,38 @@
+%% ============================================================================
+\section{The Run Mechanism}
+\label{app:model}
+
+The model below makes the run mechanism and the non-fundamental residual's friction term
+explicit, and it yields an ex-ante cross-coin
+prediction. The model does not produce the reported numbers. Section~\ref{sec:ident}'s
+estimator derives those by accounting alone.
+
+A unit mass of holders choose REDEEM or HOLD, with the HOLD payoff normalized to $0$ in
+both states, so payoffs below are \emph{net gains of REDEEM over HOLD}. If the peg holds,
+redeeming forfeits the holding benefit and pays the transaction cost, a net gain
+\begin{equation}
+g_n = -(\eta + c) < 0,
+\end{equation}
+where $\eta\ge 0$ is the forfeited yield and liquidity premium and $c\ge 0$ the redemption
+cost. If the peg breaks, a holder who redeems early avoids the reserve haircut, a net gain
+$g_b>0$. The realized liquid buffer is $\theta$, with $\mathbb{E}[\theta]\approx 1-\phi$,
+and a run succeeds iff the redeeming mass $n$ reaches $\theta$.
+
+By the global-games selection result
+\cite{carlssonvandamme1993,morrisshin1998,goldsteinpauzner2005}, the model admits a unique
+threshold equilibrium: the marginal holder at $\theta^*$ holds a uniform belief over the
+redemption mass, $n\sim U[0,1]$, so $\Pr(\text{break})=\Pr(n\ge\theta^*)=1-\theta^*$.
+Setting the REDEEM and HOLD payoffs equal gives $(1-\theta^*)\,g_b + \theta^*\,g_n = 0$.
+With $g_n=-(\eta+c)$ this solves to
+\begin{equation}
+\theta^* = \dfrac{g_b}{g_b + \eta + c}.
+\label{eq:thetastar}
+\end{equation}
+A self-fulfilling run occurs when $\theta<\theta^*$, so a larger $\theta^*$ means a
+\emph{more} fragile coin.
+
+The gain $g_b$ increases in a coin's reserve \emph{exposure} to the shock,
+because more impaired backing means a larger haircut to avoid. By \eqref{eq:thetastar},
+higher exposure implies a higher $\theta^*$ and greater fragility. This mechanism gives
+the ex-ante fragility ordering applied in Section~\ref{sec:placebo}.
+

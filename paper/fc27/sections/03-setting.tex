@@ -1,0 +1,72 @@
+%% ============================================================================
+\section{Setting and Data}
+\label{sec:setting}
+
+\subsection{USDC and the SVB shock}
+USDC is a fiat-backed stablecoin issued by Circle, redeemable one-for-one against
+reserves. Reserves are held in short-dated U.S. Treasuries and bank cash, so a bank
+failure impairs backing through the cash leg. The peg depends on full reserve backing and on an
+arbitrage loop: when the secondary price falls below par, an authorized participant can
+buy cheap tokens and redeem them at \$1.
+
+On March~10, 2023, Silicon Valley Bank failed. Late that evening, Circle disclosed on its
+official X account that ``\$3.3 billion of the ${\sim}$\$40 billion of USDC reserves remain
+at SVB''~\cite{circle2023tweet}. Circle restated that figure as ``about $8\%$'' of total
+reserves in its March~12 press release~\cite{circle2023pressrelease}, and contemporaneous
+reporting corroborates it~\cite{capoot2023}. We take $\phi\approx 0.08$, Circle's own
+rounded disclosure. The raw ratio $3.3/40.0=8.25\%$ is a different reading of the same
+disclosure, and Section~\ref{sec:ident} shows the result is insensitive to the exact
+denominator. The secondary-market price fell below par over March~10--11, reaching a
+trough of \$0.877. On March~12 at 22:15~UTC, the FDIC, the Federal Reserve, and the
+Treasury issued a joint statement guaranteeing SVB depositors in full~\cite{fedtreasfdic2023pressrelease}.
+USDC restored its peg over the following days. The disclosed fraction $\phi\approx 0.08$
+sets the worst-case floor, and the full re-peg reveals ex post that no
+permanent loss occurred.
+
+\subsection{DAI and USDT}
+DAI is a decentralized stablecoin issued by the MakerDAO protocol. By 2023 DAI's collateral
+pool was linked to USDC through its peg-stability module (PSM). The PSM is a contract
+that lets anyone swap USDC for DAI and DAI for USDC one-for-one, up to a debt ceiling. Press
+reporting says that ceiling was reached on 11~March 2023~\cite{theblock2023psm}. A USDC discount can therefore be
+arbitraged into DAI only while the outstanding balance is below the ceiling. DAI serves
+as the \emph{contagion} coin in our placebo. It is exposed to the shock through a collateral
+and arbitrage channel (Appendix~\ref{app:dai}). DAI's on-chain USDC backing at the run-date
+block is unavailable (Appendix~\ref{app:dai}), so the exposure below rests on cited
+reporting.
+
+Tether (USDT), the largest fiat-backed stablecoin, had no disclosed exposure to SVB and
+serves as the \emph{unexposed} coin. During the run it drew flight-to-safety demand and
+traded at a premium above par. We exploit that upward divergence as an identifying placebo
+(Section~\ref{sec:placebo}).
+
+\subsection{Data and the frozen snapshot}
+All analysis runs offline on a frozen snapshot over the window 2023-03-08 to 2023-03-17
+(UTC). No proprietary data enters the analysis.
+
+Two timestamp conventions appear in the frozen series. Kraken and Coinbase label each
+hourly bar by its start, so 07:00~UTC means the bar covering 07:00 to 08:00. The aggregator
+composite instead carries the aggregator's own observation timestamps, which fall a minute
+or two off the hour, so a composite reading appears as 06{:}59 or 07{:}57. Every UTC time in
+this paper is reported as the source recorded it, with no rounding to a common grid, so that
+every printed time matches a frozen value.
+
+The headline USD price series is an hourly composite from the public aggregator DeFiLlama.
+The frozen record does not enumerate its constituent venues, so we describe it as an
+aggregator composite. We do not treat it as an independent venue. Kraken's fiat-settled
+USDC/USD pair cross-checks the \$0.877 trough, with 240 complete hourly rows over 8 to
+17~March, a span that contains the 216-hour analysis window. Binance \texttt{USDCUSDT} is a
+second cross-check. The frozen Binance series starts only at 14:00~UTC on March~11, after
+the trough, so it corroborates depth over the later hours. It cannot corroborate the trough.
+Because the pair is USDT-denominated, we convert it to USD by multiplying the raw price by
+the contemporaneous USDT-USD price, so the converted price embeds USDT's own premium. We do
+not assume USDT traded at \$1. We measure the USDT premium separately, on Coinbase
+\texttt{USDT-USD}, the second fiat-settled cross-check alongside Kraken.
+
+To measure who redeemed, we reconstruct primary-market redemptions from on-chain burn
+events, FIFO-matching (first-in-first-out) each burn to the oldest unconsumed deposit that
+reached Circle's minter. Appendix~\ref{app:hhi} reports the coverage this attribution achieves.
+The freeze covers the attribution's \emph{output}, not the per-event log it was derived
+from (Appendix~\ref{app:repro}). For the DAI decomposition we read
+an archival \texttt{eth\_call} read of on-chain DAI supply at the run-date block
+(Appendix~\ref{app:dai}).
+

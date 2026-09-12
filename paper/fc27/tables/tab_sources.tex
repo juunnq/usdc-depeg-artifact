@@ -1,0 +1,39 @@
+% Source: data/MANIFEST.json (files{} + sources[] entries) -- row counts read
+%   directly from each listed file, not from MANIFEST prose or estimated:
+%   data/price_hourly.csv, data/binance_usdcusdt_1h.csv, data/usdc_supply_daily.csv,
+%   data/redemptions_by_wallet.csv, data/usdt_usd_hourly.csv, data/terra_price_hourly.csv,
+%   data/n1/kraken_usdcusd/hourly.csv, data/n1/kraken_usdtusd/hourly.csv,
+%   data/n1/kraken_usdtusd_2019/hourly.csv, data/n1/onchain/hourly_block_anchors.csv,
+%   data/n1/tether2019/disclosure_passages_nyag.json (passages[]),
+%   data/n1/paxos2023/disclosure_passages_paxos.json (list),
+%   data/n1/paxos2023/usdp_supply_daily.csv,
+%   data/n1/labels/dawsbot_eth-labels/accounts.csv,
+%   data/n1/labels/brianleect_etherscan-labels/combinedAccountLabels.json (dict keys);
+%   results/number4_dai_contagion.json (run_date_utc, DAI backing row's Coverage).
+% Width pass 2: see write_tab_sources docstring. Coverage is date-only, read from
+%   each file's own timestamp column via _cov_range/_d_only_iso, except Redemptions
+%   (constants.WINDOW_START_S/WINDOW_END_S, matching redemptions.py's block_by_time
+%   calls) and the two GitHub label rows (no frozen retrieval date exists, so "--"
+%   rather than a fabricated one). Series shortened, Source cut to one or two words.
+\begin{tabular}{@{}p{2.9cm}p{2.9cm}p{1.5cm}p{2.7cm}@{}}
+\toprule
+Series & Source & Rows & Coverage \\
+\midrule
+USDC/USDT/DAI price & DeFiLlama & 639 & 7--16 Mar 2023 \\
+USDC/USDT cross & Binance & 131 & 11--17 Mar 2023 \\
+USDC supply & DeFiLlama & 12 & 7--18 Mar 2023 \\
+Redemptions & Etherscan & 776 & 8--17 Mar 2023 \\
+DAI backing & Etherscan & 1 & 11 Mar 2023 \\
+USDT/USD price+vol & Coinbase & 217 & 8--17 Mar 2023 \\
+Terra price & DeFiLlama & 384 & 7--15 May 2022 \\
+\midrule
+Kraken USDC/USD & Kraken & 240 & 8--17 Mar 2023 \\
+Kraken USDT/USD & Kraken & 240 & 8--17 Mar 2023 \\
+Kraken USDT/USD 2019 & Kraken & 624 & 20 Apr--15 May \\
+NYAG press release & NYAG & 4 & 25 Apr 2019 \\
+Paxos/USDP statement & Paxos & 3+12+1 & 8--14 Mar 2023 \\
+Labels (dawsbot) & GitHub & 144{,}378 & -- \\
+Labels (brianleect) & GitHub & 23{,}288 & -- \\
+Block anchors & Ethereum RPC & 240 & 8--17 Mar 2023 \\
+\bottomrule
+\end{tabular}

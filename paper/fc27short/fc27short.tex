@@ -1,0 +1,106 @@
+%% FC 2027 SHORT PAPER variant. Anonymized. LLNCS format.
+%%
+%% A separate submission from paper/fc27/, not a mode of it. The two are judged under
+%% different CFP criteria -- the regular paper as a novel unpublished scientific
+%% contribution, the short paper on novelty and potential to spark interest -- so they
+%% are separate source trees built by one script (tools/build_fc27.py --target short)
+%% from one set of generated figures and table fragments. The content budget is 8 pages
+%% excluding references, no appendices of any kind, one figure, one table. The placebo
+%% table was budgeted as a second table and released under D30; the comment at its former
+%% position says what replaced it.
+%%
+%% Every numeric claim is carried verbatim from the regular version, whose printed claim
+%% map remains the provenance record. The short version replaces that table with the
+%% artifact URL, which is the one place its numbers can be traced.
+\documentclass[runningheads]{llncs}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[hidelinks]{hyperref}
+\Urlmuskip=0mu plus 1mu
+\emergencystretch=1.5em
+
+%% Byte-reproducible build, identical to the regular target's pins: pdfTeX draws the
+%% PDF trailer's /ID from random bytes, so two builds of identical source otherwise
+%% differ in hash. An empty \pdftrailerid{} fixes it; SOURCE_DATE_EPOCH (set by
+%% tools/build_fc27.py) pins /CreationDate and /ModDate. Both are needed.
+\pdftrailerid{}
+
+%% Build-time width guard, same as the regular target: errors loudly instead of
+%% silently overflowing into the margin if a regenerated fragment no longer fits.
+\newlength{\tblw}
+\newcommand{\checkwidth}[1]{\settowidth{\tblw}{#1}\ifdim\tblw>\textwidth\GenericError{}{TABLE TOO WIDE}{}{}\fi}
+
+\begin{document}
+
+\input{sections/00-front}
+\input{sections/01-intro}
+\input{sections/02-related}
+\input{sections/03-setting}
+
+%% Figure 1 is placed before the section that first cites it. LaTeX only considers a
+%% float from its own position forward, so declaring it here is what lets it land on
+%% Section 4's first page rather than drifting past the section that discusses it.
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figs/fig_event_short.pdf}
+\caption{Hourly USD prices of USDC (solid), DAI (dashed), and USDT (dotted) over the
+analysis window (a) and over 11~March 2023 (b), against par and the \$0.92 floor. Shading
+in (a) and hatching in (b) mark the impossibility window, 06{:}59--16{:}00~UTC on
+11~March; nine of its ten hours breach the floor, and the tenth, at 08{:}57, recovers to
+\$0.9216 and is drawn unhatched. Circles in (b) are Kraken's close and VWAP readings.
+Lines in (b) mark A, Circle's disclosure (03{:}11~UTC), and B, the Coinbase USDT-USD
+premium peak (02{:}00~UTC), which fall 71 minutes apart and are not separable in (a).}
+\label{fig:event}
+\end{figure}
+
+\input{sections/04-bound}
+
+%% The cross-stablecoin placebo table is generated (tables/tab_placebo_short.tex) but NOT
+%% placed. It was the third float in an eight-page budget, and releasing it was the single
+%% largest page saving available: nine lines, measured. Nothing it printed is lost.
+%% Section 5's prose now carries all three troughs, all three basis-point deviations, both
+%% USDT premium peaks with the later one labelled post-backstop, and the break outcome for
+%% each coin, along with the precision note the caption carried. The fragment stays in the
+%% repository so the table can be restored if the page budget ever allows it.
+%%
+%% The sensitivity grid is generated (tables/tab_sens_short.tex) but NOT placed. Two
+%% reviewers asked for the fifteen-number Section 4 paragraph to become a table, and
+%% one predicted the table would SAVE space. It did not: as a fourth float with its own
+%% caption it cost about twelve lines net, against a paper already at its page limit.
+%% The paragraph it replaced is gone either way, which was the reviewers' actual
+%% complaint, and Section 4 now states the range, the extreme cell and its feed in
+%% prose. The fragment stays in the repository so the grid can be restored if the page
+%% budget ever allows it.
+
+%% The panel table is declared before Section 5 rather than immediately before Section 6,
+%% which cites it. A float is only considered from its own position forward, so an earlier
+%% declaration gives LaTeX more pages to place it on. Measured three times. While the
+%% placebo table still held page 7's [t] area the panel landed on page 8 from either
+%% position; with that table released it lands on page 7 from either position, and the
+%% overflow is the same three lines either way. Placement is not the lever that fixes the
+%% residual. Recorded because the alternative reading -- that placement was never tried --
+%% is worse.
+\begin{table}[t]
+\centering
+\caption{Specificity panel. The USDC row reads a composite headline print and the Tether
+row a Kraken hourly low, a mismatch that runs against the panel here, because Tether
+fails to fire even on its most favorable reading. $q^{\star}$ is undefined where
+$\phi=0$.}
+\label{tab:panel}
+\small
+\setlength{\tabcolsep}{2pt}
+\checkwidth{\small\setlength{\tabcolsep}{2pt}\input{tables/tab_panel_short}}
+\input{tables/tab_panel_short}
+\end{table}
+
+\input{sections/05-crosscoin}
+\input{sections/06-specificity}
+\input{sections/07-conclusion}
+
+\bibliographystyle{splncs04}
+\bibliography{../fc27/refs}
+
+\end{document}

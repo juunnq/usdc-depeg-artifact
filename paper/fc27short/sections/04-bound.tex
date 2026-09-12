@@ -1,0 +1,119 @@
+%% ============================================================================
+%% ============================================================================
+\section{The Bound and Its Application}
+\label{sec:ident}
+
+The estimator is pure accounting, with no run threshold and no fitted parameter. Let
+$\phi$ be the fraction of reserves impaired and $\rho\in[0,1]$ the expected recovery rate
+on the impaired assets. The fraction permanently lost is $\phi(1-\rho)$, so expected
+backing per coin is
+\begin{equation}
+P_{\mathrm{fund}} = 1 - \phi(1-\rho),
+\end{equation}
+and its minimum over $\rho$, the worst-case floor, is $1-\phi$. The estimator rests on
+three assumptions, and a fourth serves the corollary below.
+
+\begin{description}
+\item[(A1) Reserve-only fundamental.] A coin's fundamental value is its expected reserve
+  backing per unit given \emph{disclosed} reserves, and the only impairment is the
+  exposure $\phi$.
+\item[(A2) Par redemption when solvent.] Conditional on rescue, redemption is at \$1
+  within the analysis horizon.
+\item[(A3) Bounded recovery.] Recovery on impaired reserves satisfies $\rho\in[0,1]$,
+  because the coin is fully reserved and the reserves carry no leverage.
+\item[(A4) Monotone-utility valuation.] The unconstrained marginal holder values the claim
+  as an expected utility of its payoff, for some monotone increasing utility and some
+  probability measure over outcomes, with no ambiguity about the disclosed $\phi$. This nests risk neutrality, any degree of risk
+  aversion, and rank-dependent weighting.
+\end{description}
+
+\begin{proposition}[Rational-pricing floor and impossibility]
+\label{prop:floor}
+Assume \textup{(A1)--(A3)}, and let the impaired fraction's loss go unremediated with
+probability $q\in[0,1]$ under the pricing measure, so that
+$P_{\mathrm{fund}}(q,\rho)=1-q\,\phi\,(1-\rho)$. Then
+$P_{\mathrm{fund}}(q,\rho)\in[\,1-\phi,\,1\,]$ for all $q,\rho\in[0,1]$, so any observed
+price $P_{\mathrm{obs}}<1-\phi$ cannot be rationalized as expected loss. The
+unremediated-loss probability it would require, at the worst-case recovery $\rho=0$, is
+$q^{\star}=(1-P_{\mathrm{obs}})/\phi>1$.
+\end{proposition}
+
+\begin{proof}
+$P_{\mathrm{fund}}$ is decreasing in $q$ and increasing in $\rho$, so it is minimized at
+$(q,\rho)=(1,0)$ at value $1-\phi$ and maximized at $q=0$ at value $1$, and $q^{\star}$
+solves $P_{\mathrm{obs}}=1-q\phi$ at $\rho=0$. \qed
+\end{proof}
+
+This is the floor-at-recovery-value bound of credit pricing, under which risky debt is
+bounded below by its recovery value for any pricing measure~\cite{merton1974}, with the
+unremediated-loss probability a reduced-form failure intensity~\cite{duffiesingleton1999}.
+
+Under (A1)--(A4) the floor is also preference-free. By (A2) and (A3) the payoff $X$ on a
+USDC claim has support in $[1-\phi,1]$ in every state. For any monotone increasing utility
+$u$, the certainty equivalent $u^{-1}\!\bigl(\mathbb{E}[u(X)]\bigr)$ of a lottery with
+that support lies in $[1-\phi,1]$ as well. That floor bounds rational
+\emph{valuations}, meaning willingness to pay. It does not bound market-clearing
+\emph{prices}, because a seller under binding margin or capital constraints can rationally
+transact below every unconstrained valuation~\cite{shleifervishny1997,grombvayanos2010}.
+That channel is a friction, and the non-fundamental share defined next includes it. The floor
+is as strong as the support condition $X\in[1-\phi,1]$ and no stronger. That condition
+does not cover issuer-wrapper risk, an insolvency that delivers less than the floor or
+delivers it late through claim-priority uncertainty, administrative cost, or a gated
+distribution~\cite{Gorton_2021}.
+
+Write the observed deviation $1-P_{\mathrm{obs}}$ and the fundamental deviation
+$\phi(1-\rho)$. The non-fundamental share of the de-peg is
+\begin{equation}
+s_{\mathrm{nf}}(\rho)
+  = \frac{(1-P_{\mathrm{obs}})-\phi(1-\rho)}{1-P_{\mathrm{obs}}} .
+\label{eq:share}
+\end{equation}
+Its lower edge takes $\rho=0$, treating total permanent loss of the impaired reserves as
+the fundamental cap. Its upper edge takes $\rho=1$, the full re-peg, which
+implies zero permanent loss and gives $s_{\mathrm{nf}}(1)=1$, exactly $100\%$ ex post, an
+identity. The residual covers coordination panic and microstructure friction together, so
+the share is an upper bound on pure coordination panic.
+
+With the disclosed impairment $\phi=0.08$, the worst-case floor is $1-\phi=\$0.92$ and the
+observed trough is $P_{\mathrm{obs}}=\$0.877$. The trough lies below the floor, so under
+(A1)--(A3) no expected loss rationalizes it, and the implied unremediated-loss probability
+is $q^{\star}=(1-0.877)/0.08=1.54$. The lower edge of
+\eqref{eq:share} is
+$(0.1233-0.08)/0.1233=0.351$, so at least $35\%$ of the de-peg is non-fundamental, and we
+report the band $[35\%,100\%]$, whose upper end the full re-peg supports. Across three
+readings of Circle's disclosure and five price-feed troughs the lower edge runs from
+$16.7\%$ to $36.4\%$, and every one of those fifteen combinations breaches the floor. At
+the disclosed $\phi$, the lowest is $19.2\%$, from Kraken's close, whose minimum print
+is \$0.901. By
+Proposition~\ref{prop:floor} the trough is unrationalizable for any impairment below
+$12.3\%$, a $4.3$-point margin over the disclosed $8\%$, and the lower edge stays strictly
+positive across that margin.
+
+(A1) binds, so $\phi$ is Circle's disclosed figure and we report a band around it.
+Evaluating at $\rho=0$ is the conservative choice, because it uses the lowest floor that
+(A3) allows. Lowering the floor further would require relaxing (A3) below zero. Supply
+at the trough exceeded the \$40B denominator Circle used, so $\phi$ on the actual
+reserve base is $0.079$, below the headline $0.08$. The count of breaching hours over the
+daily-supply interpolation band $\phi\in[0.078,0.081]$ ranges from 9 to 11.
+
+Circle's disclosure quantifies only the SVB deposit. The same update describes the
+remaining cash reserve as held at a variety of institutions, of which SVB was one, without
+stating how that remainder splits across banks~\cite{circle2023update}. An undisclosed
+exposure at another bank is therefore not ruled out by the disclosure itself. That
+undisclosed remainder falls inside the $12.3\%$ margin established above, so the argument
+survives unless it pushed the true impairment past that figure.
+
+Kraken's USDC/USD close breaches the \$0.92 floor in 9 of 240 hours and its VWAP in 10. The hourly low
+breaches it in 12, but the three extra hours rest on one print worth \$2{,}948.
+
+Because the estimator needs only a price and a publicly quantified $\phi$, it can be
+evaluated at every hour of the frozen window (Figure~\ref{fig:event}). Of USDC's $212$
+in-window hourly readings, $9$ lie below the \$0.92 floor, and all nine fall on 11~March
+2023 between 06{:}59 and 16{:}00~UTC. Kraken's $240$ rows cover a wider 8 to 17~March
+span than the composite's $212$ in-window hours, which is why its count is read against
+$240$ and USDC's against $212$. That impossibility window measures duration and
+specificity. It adds no evidence volume, because hourly prices within one episode are
+near-unit-root, with lag-1 autocorrelation $r=0.963$, so the $212$ readings carry an
+AR(1)-adjusted effective sample size $n(1-r)/(1+r)=4.0$. The lower edge, $q^{\star}$, and the
+floor-breach indicator are three readings of $1-P_{\mathrm{obs}}-\phi$, so their agreement
+corroborates nothing.

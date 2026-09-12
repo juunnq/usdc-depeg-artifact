@@ -1,0 +1,39 @@
+%% ============================================================================
+%% ============================================================================
+\section{Policy and Limitations}
+\label{sec:disc}
+
+\paragraph{Policy implications.} An $8\%$ \emph{disclosed} bank exposure produced a de-peg at least
+$35\%$ non-fundamental by the bound and exactly $100\%$ ex post, an identity, reversed once the Federal
+Reserve, Treasury, and FDIC guaranteed SVB deposits~\cite{fedtreasfdic2023pressrelease}. The episode
+is an argument for limiting idiosyncratic bank-deposit exposure.
+
+\paragraph{The size of microstructure friction.} The time-value discount on a
+redemption delayed two to three days by banking hours~\cite{watsky2024} is
+$2.6$--$4.1$~bps~\cite{ustreasury2023daily}. That is more than two orders of magnitude short of the
+$1{,}233$-bps gap. The one remaining channel is limits-to-arbitrage with redemptions
+suspended~\cite{shleifervishny1997,grombvayanos2010}, which the residual already contains
+(Section~\ref{sec:ident}).
+
+\paragraph{Limitations.} The panic-versus-fundamentals split is contested~\cite{anadu2024,watsky2024}. The composite feed could
+mismeasure the trough. We address this with the Kraken cross-check, the venue-level USDT series, and
+the material-volume Binance print at \$0.882, which corroborates the depth of the move rather than
+the trough itself (Sections~\ref{sec:sensitivity} and~\ref{sec:placebo}). The disclosed $\phi$ could understate exposure, but the
+$12.3\%$ margin and the $\phi$-by-feed grid show the conclusion survives. The non-fundamental share bundles panic with microstructure friction, so we claim only an upper bound on pure coordination panic.
+DAI's USDC exposure is
+reporting-based. MakerDAO's PSM USDC was off-chain by March 2023, so no on-chain series exists
+(Appendix~\ref{app:dai}). We measure the redemption HHI at the address level, so it is an upper bound
+on entity-level concentration (Appendix~\ref{app:hhi}). The no-sybil condition that this upper bound
+requires is untestable with public labels, which resolve only $2$ of the $776$ funding addresses. We
+identify the mechanism from a single episode. The ex-ante fragility ordering identifies \emph{exposure}
+alone, and under the null of Section~\ref{sec:placebo} the realized ordering carries
+probability $1/2$. Within the
+episode, hourly readings are autocorrelated, giving an effective sample size of $4.0$.
+The ex-post $100\%$ is an aggregate statement: holders who sold at the trough still realized losses.
+
+\paragraph{Scope condition: $\phi$ must be public.} TrueUSD had an unremediated reserve impairment
+during our window, but nothing about it was publicly quantified until a September 2024 SEC
+complaint~\cite{sectruecoin2024}. On 11~March 2023, TUSD traded
+$116$~bps below par while USDC traded $1{,}233$~bps below. Our estimator returns null on TUSD
+(Appendix~\ref{app:excl}). We define the residual \emph{relative to what the market could know}:
+concealed impairment produces no detectable signal by construction. The scope condition is an argument for the quantified reporting regimes the GENIUS Act contemplates~\cite{geniusact2025}.

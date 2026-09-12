@@ -1,0 +1,46 @@
+\section{Introduction}
+\label{sec:intro}
+
+Stablecoins are becoming payment infrastructure~\cite{geniusact2025}, and the GENIUS Act
+gives them their first comprehensive U.S. federal framework. A fiat-backed stablecoin that
+trades below par admits two readings. Under \emph{rational repricing}, an impaired reserve
+is worth less. Under \emph{non-fundamental} repricing, a self-fulfilling coordination run
+and microstructure friction push the price below the floor a reserve loss can justify. No
+measurement of March 2023 cited in Section~\ref{sec:lit} forms that floor. The policy
+response to a mostly non-fundamental de-peg is backstop and redemption design, since a
+reserve-quality rule addresses only the fundamental share.
+
+We offer a reusable \emph{estimator} for any disclosed-impairment de-peg. From an issuer's
+\emph{disclosed} reserve impairment, derive a worst-case floor. Test whether the observed
+trough breaches that floor. Read the breach, if any, as a bound on the non-fundamental
+share. A supervisor can run it on public data within hours of a break. It returns no
+verdict when the trough does not breach the floor.
+
+We apply it to the March 2023 de-peg of USD~Coin (USDC). The failure of Silicon Valley
+Bank (SVB) trapped about $8\%$ of USDC's reserves. A
+joint federal backstop~\cite{fedtreasfdic2023pressrelease} restored the peg within days.
+The SVB failure was an idiosyncratic shock with a dated disclosure, and its reversal was
+complete. The counterfactual ``no panic'' price is therefore pinned twice, as a worst-case
+floor and, ex post, as the restored peg.
+
+Under expected-loss pricing, fundamental value cannot fall below $1-\phi$, where $\phi$ is
+the disclosed impairment fraction. A preference-free corollary extends that floor to any
+monotone-utility valuation. The observed trough breaches the floor at every admissible
+unremediated-loss probability and recovery rate, and requires $q^{\star}=1.54$, which
+exceeds one. No rational-pricing account is consistent with the trough. The resulting
+non-fundamental share stays positive across impairment readings, and at the full re-peg it
+is $100\%$ ex post, an identity (Section~\ref{sec:ident}).
+
+The paper makes two contributions:
+\begin{itemize}
+\item \textbf{A model-free impossibility bound} (Proposition~\ref{prop:floor}) on what a
+  disclosed reserve impairment can justify.
+\item \textbf{An offline, keyless reproduction path}: every computed number regenerates
+  from a frozen snapshot with no network call and no API key.
+\end{itemize}
+Two analyses stay outside the estimator: the ex-ante fragility
+ordering by reserve exposure that the realized troughs match, with null probability $1/2$
+(Section~\ref{sec:placebo}), and a three-episode specificity panel
+(Section~\ref{sec:spec}). We screen seven candidate de-pegs. In none did an issuer with
+a material impairment disclose its size while the exposure was unresolved, which limits
+qualifying episodes to what issuers choose to disclose.

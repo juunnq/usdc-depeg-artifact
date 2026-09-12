@@ -1,0 +1,50 @@
+%% ============================================================================
+\section{Excluded Coins and Candidate Episodes}
+\label{app:excl}
+Three further zero-SVB-exposure coins exist: USDP, GUSD, and BUSD. The exclusion
+criterion is calm-window behavior alone. Over a calm, pre-SVB baseline (February
+16--March 8, 2023), USDP, GUSD, and BUSD already print below \$0.99 in 7, 1, and 1 of 480
+hours. The $1\%$ break test therefore has no discriminating power for them, and we exclude them
+before reading any crisis-window price. For completeness, USDP, GUSD, and BUSD trough at \$0.948, \$0.928,
+and \$0.985. Liquidity offers no alternative exclusion rule. Frozen
+median daily volumes range from ${\sim}\$16$M for USDP, which was listed on Binance
+mid-window, to ${\sim}\$687$M for BUSD. GUSD has no freezable series. BUSD is further
+confounded by an unrelated regulatory event, the February 2023 NYDFS order halting new
+issuance.
+Anadu et al.~\cite{anadu2024} find GUSD and USDP had no significant dollar flows. Their
+finding corroborates independently that the run was coin-specific. Three placebo coins whose
+feeds can register a $1\%$ break support the test better than a six-coin panel in which
+three cannot.
+
+The $1\%$ break threshold and the worst-case floor are distinct: a coin can cross the
+$1\%$ materiality threshold without nearing the price at which no reserve loss could
+rationalize the price. The bound is evaluated at each hourly price, so breaching hours need not be contiguous. USDC's impossibility window is interrupted at 08{:}57 by
+a recovery to \$0.9216, a price 16 bps above the floor, at which $q^{\star}=0.98$, before falling back
+below the floor for seven further hours. USDT's worst in-window hour reaches $q^{\star}=0.095$, an
+order of magnitude below the $q^{\star}=1$ firing threshold.
+
+\paragraph{TrueUSD and the public-information scope condition.} The scope condition of
+Section~\ref{sec:disc} rests on a documented case. TrueUSD is excluded on timing: its
+impairment was quantified publicly only after our window closed. The SEC's September 2024
+complaint alleges that a substantial fraction of TrueUSD's backing sat in an offshore
+commodity fund through our window~\cite{sectruecoin2024}. The complaint became public
+eighteen months after the March 2023 episode had ended. Precondition~(i) requires public
+quantification while the exposure is unresolved, and TUSD had none. TrueUSD's
+contemporaneous attestations used unquantified ``cash and cash equivalents'' language and
+never named the fund. Run on TUSD in March 2023, the estimator would have drawn $\phi=0$
+from those attestations and correctly returned null despite a then-unquantified impairment. TUSD
+therefore illustrates the scope condition and enters no test, because its de-peg depth
+over 2022--2024 is uncorrelated with its alleged impairment trajectory.
+
+\paragraph{The seven candidate episodes.} BUSD and
+Tether~(2022) are genuine price dislocations with no disclosed own-reserve
+impairment. Paxos affirmed full $1{:}1$ backing throughout while redeeming ${\sim}\$7.9$B
+of BUSD in a month~\cite{paxos2023busd}, and Tether's disclosures give asset-composition
+breakdowns and denials of rumors without stating an impairment fraction. Run on either, the
+estimator sets $\phi=0$ and reproduces the degenerate Terra null
+(Section~\ref{sec:sensitivity}). Neither gives a second identification.
+DAI~(2020, ``Black Thursday'')~\cite{Gudgeon_2020} has a disclosed bad-debt figure but is a
+collateral-liquidation cascade requiring a different fundamental-value model, violating
+precondition~(iii). USDR is a tokenized-real-estate hybrid violating~(A1). USDP and GUSD
+fail the diagnostic-print test above. TUSD fails precondition~(i).
+

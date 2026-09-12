@@ -1,0 +1,16 @@
+% Source: results/phi_denominator_sensitivity.json grid[] -- entries with
+%   trough_label="composite_min_headline" at phi_label in {static_phi_altreserve_42.1B_0.0784,
+%   static_phi_svb_0.08, static_phi_3.3_over_40.0_0.0825}: q_star_rho0 = 1.573 / 1.5416 / 1.4948
+%   respectively. The rho=1 identity is rational_bound.py's own stated pricing relation
+%   P_fund(q,rho) = 1 - q*phi*(1-rho) (module docstring + implied_failure_prob's denominator
+%   phi*(1-rho_fail), which vanishes at rho=1 for any phi>0, making P_fund identically 1 for
+%   every admissible q). This sentence
+%   supplements Proposition 1 / Corollary 1 rather than replacing their formal statements.
+Under the worst-case recovery assumption $\rho=0$, the implied unremediated-loss probability at
+the composite trough exceeds the admissible $[0,1]$ range at every $\phi$ in the sensitivity
+grid: $q^{\star}=1.57$ at $\phi=0.0784$, $q^{\star}=1.54$ at $\phi=0.08$, and $q^{\star}=1.49$ at
+$\phi=0.0825$. At the opposite extreme, $\rho=1$ collapses the pricing relation to the identity
+$P_{\mathrm{fund}}(q,1)=1-q\phi(1-1)\equiv 1$ for every $q\in[0,1]$, so full assumed recovery
+makes the floor coincide with par and the bound uninformative. This is why
+Proposition~\ref{prop:floor} and
+Corollary~\ref{cor:fosd} are evaluated at $\rho=0$ throughout.

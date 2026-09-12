@@ -1,0 +1,21 @@
+% Source: results/trough_corroboration.json --
+%   firing_report.series.{composite, kraken_usdc_close, kraken_usdc_vwap,
+%   kraken_usdc_low}.{firing_count, n_hours_observed} (9/212, 9/240, 10/240, 12/240);
+%   results/impossibility_window.json coins.{DAI,USDT}.{breaching_hours,
+%   hours_observed} (2/214, 0/213). Replaces the old Figure 1 lower strip,
+%   deleted along with that figure.
+%   The Kraken-low single-trade caveat (trough_corroboration.json's
+%   kraken_low_convention_note) is not reproduced here -- see write_tab_firing
+%   docstring; that caveat now lives in body prose.
+\begin{tabular}{@{}lc@{}}
+\toprule
+Feed & Breaches \\
+\midrule
+Composite (USDC) & 9/212 \\
+Kraken close (USDC) & 9/240 \\
+Kraken VWAP (USDC) & 10/240 \\
+Kraken low (USDC) & 12/240 \\
+DAI (composite) & 2/214 \\
+USDT (composite) & 0/213 \\
+\bottomrule
+\end{tabular}

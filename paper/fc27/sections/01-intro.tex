@@ -1,0 +1,46 @@
+%% ============================================================================
+\section{Introduction}
+\label{sec:intro}
+
+Stablecoins are becoming payment infrastructure~\cite{geniusact2025}, and with the GENIUS
+Act they now operate under their first comprehensive U.S. federal
+framework. That framework must cover reserve composition, redemption rights, and
+disclosure before the next peg breaks. A fiat-backed stablecoin that trades below par
+admits two readings. Under \emph{rational repricing}, an impaired reserve is worth less.
+Under \emph{non-fundamental} repricing, a self-fulfilling coordination run and
+microstructure friction push the price below the floor a reserve loss can justify. No
+measurement of March 2023 cited in Section~\ref{sec:lit} forms that floor, and the split
+between them should set the policy response between backstops and reserve quality.
+
+This paper offers a reusable \emph{estimator} that applies to any disclosed-impairment
+de-peg. From an issuer's \emph{disclosed} reserve impairment,
+derive a worst-case floor. Test whether the observed trough breaches that
+floor. Read the breach, if any, as a bound on the non-fundamental share. A supervisor can run it on public data within hours of a break. It returns no verdict when the trough does not breach the floor. We apply it to
+the March 2023 de-peg of USD~Coin (USDC). The failure of Silicon Valley Bank (SVB)
+trapped about $8\%$ of USDC's reserves, and the coin reached a \$0.877 trough. A joint
+federal backstop~\cite{fedtreasfdic2023pressrelease} restored the peg within days. The SVB
+failure was an idiosyncratic shock with a dated disclosure, and its reversal was complete. The counterfactual ``no panic'' price is therefore pinned twice, as a
+worst-case floor and, ex post, as the restored peg.
+
+Under expected-loss pricing of the disclosed impairment, fundamental value cannot fall
+below a floor that a preference-free Corollary extends to any monotone-utility valuation.
+The observed trough breaches that floor at every admissible unremediated-loss probability
+and recovery rate. No rational-pricing account is consistent with the trough. The resulting
+non-fundamental share stays positive across impairment readings, and at the full re-peg
+it is $100\%$ ex post, an identity (Section~\ref{sec:ident}).
+
+The paper makes two contributions:
+\begin{itemize}
+\item \textbf{A model-free impossibility bound} (Proposition~\ref{prop:floor}):
+  fundamental value cannot fall below $1-\phi$, so the observed trough requires
+  unremediated-loss probability $q^{\star}=1.54$, which exceeds one and is
+  unrationalizable under expected-loss pricing.
+\item \textbf{An offline, keyless reproduction path}: every reported number regenerates
+  from a frozen snapshot with no network call and no API key
+  (Appendix~\ref{app:repro}).
+\end{itemize}
+Two supporting analyses do not enter the estimator: a global-games exposure ordering that
+the realized troughs match, with null probability $1/2$ (Section~\ref{sec:placebo}), and a
+specificity panel of three candidate episodes
+(Section~\ref{sec:sensitivity}).
+

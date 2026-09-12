@@ -1,0 +1,53 @@
+%% ============================================================================
+\section{Related Work}
+\label{sec:lit}
+
+The theory of runs begins with Diamond and Dybvig~\cite{diamonddybvig1983}, whose
+demand-deposit model leaves the run \emph{probability} undetermined, and global-games
+methods select a unique equilibrium~\cite{carlssonvandamme1993,morrisshin1998,goldsteinpauzner2005}.
+From that literature we take only the selection result, in which the marginal agent holds a
+diffuse belief over the aggregate withdrawal mass. We do not reproduce the uniqueness
+argument, and our result does not depend on it.
+
+A literature since 2020 applies run theory to stablecoins, building on design
+taxonomies~\cite{Moin_2020,Klages_Mundt_2020} and peg-arbitrage
+mechanisms~\cite{Lyons_2023}. Ma, Zeng, and Zhang~\cite{mzz2025} build a global-games
+stablecoin model, finding USDC's arbitrage less centralized than USDT's. Anadu et
+al.~\cite{anadu2024} analyze the March 2023 de-peg via a discrete ``break-the-buck'' threshold.
+Watsky et al.~\cite{watsky2024} give the institutional reason for that threshold, a closed
+redemption window. USDC's primary redemption window
+was open only to Circle's approved customers and was constrained by U.S. banking hours over
+the March 10--13 weekend. Secondary prices therefore de-pegged while the arbitrage loop
+was closed. A Federal Reserve post-mortem co-authored by Watsky reports the same
+mechanism~\cite{fedshadow2025}. On AMM liquidity around the SVB
+failure, Hernandez Cruz et al.~\cite{hernandezcruz2024} run a difference-in-differences
+comparing USDC with USDT. Uhlig~\cite{uhlig2022} finds many TerraUSD holders behaved as
+rational Bayesian updaters in the May 2022 TerraUSD collapse, which is evidence that
+rational and panic behavior are hard to separate without a structural restriction. Liu,
+Makarov, and Schoar~\cite{liumakarovschoar2023} reconstruct that collapse wallet-by-wallet.
+Contemporaneous work surveys stablecoins as a payment technology and the financial risks
+they pose~\cite{ahmed2025stablecoins}.
+
+Other work measures the March~2023 de-peg without an expected-loss floor. Galati and
+Capalbo~\cite{galaticapalbo2023} document the SVB link earliest, Diop, Chevallier, and
+Sanhaji~\cite{diop2024fintech} rank USDC as most exposed in a daily cross-coin panel,
+Cintra and Holloway~\cite{cintraholloway2023depegs} flag the de-peg about five hours before USDC crosses
+\$0.99, Li et al.~\cite{li2026settlementfriction} frame it as settlement friction, and
+Sankaewtong et al.~\cite{sankaewtong2026contagion} reconstruct the on-chain contagion
+pathway at the transaction level. Our bound derives an expected loss from disclosed
+exposure, and none of these papers does.
+
+\paragraph{Contribution boundary.} Our work complements both lines of this literature. Structural
+calibrations~\cite{mzz2025} estimate a run \emph{probability}, and event
+studies~\cite{anadu2024} document \emph{flows}. We instead bound the \emph{realized
+non-fundamental share} of one episode from an accounting identity. Two papers appear to conflict with this reading. Anadu et al.'s~\cite{anadu2024} \emph{rational} run concerns the
+redemption decision. It does not concern whether the price was justified. Watsky et
+al.'s~\cite{watsky2024} weekend discount is the microstructure friction the non-fundamental
+share includes. Ahmed, Aldasoro, and Duley~\cite{ahmedaldasoroduley2024} run
+synthetic-control tests on four \emph{other} episodes. They treat March 2023 only as a descriptive price path. Two further papers
+address adjacent questions. Zhu~\cite{zhu2026redemptions} retains both large-sale and
+collateral risk, splitting the space of fundamental states into regions by dominant risk
+type, which classifies \emph{which} channel moves price and leaves \emph{how far}
+unmeasured. Molinet and Filos-Ratsikas~\cite{molinetfilos2026} define fiat-backed coins as
+the degenerate always-stable case ($1/p_t=1$), so they never analyze March 2023.
+

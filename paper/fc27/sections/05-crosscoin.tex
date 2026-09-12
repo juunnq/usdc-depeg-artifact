@@ -1,0 +1,76 @@
+%% ============================================================================
+\section{Cross-Coin Evidence}
+\label{sec:placebo}
+
+A global-games run model (Appendix~\ref{app:model}) yields an ex-ante fragility ordering
+for the March 2023 shock, driven by reserve exposure: USDC (direct SVB exposure) most
+fragile, DAI (mechanically pinned to USDC through the PSM) next, and USDT (no SVB
+exposure) least. This single episode identifies exposure. It does not identify
+concentration, since USDC was less concentrated than USDT on the external data
+of~\cite{mzz2025} (Appendix~\ref{app:hhi}) and still had the deepest trough. DAI is
+mechanically linked to USDC (Appendix~\ref{app:dai}), so the null leaves one free comparison,
+USDT against the USDC--DAI pair. Under that null the realized ordering has probability $1/2$,
+and we therefore treat the match as illustrative.
+
+\begin{table}[t]
+\centering
+\caption{Cross-stablecoin placebo. ``De-peg'' and ``premium'' are the
+maximum deviation below and above par over the 2023-03-08--17 UTC window, and USDT's
+premium appears as two rows because it differs by feed and by time. Troughs are shown to
+three figures and the basis-point columns are computed on the unrounded four-figure print,
+so the two columns are consistent at full precision rather than at the precision shown.}
+\label{tab:placebo}
+\small
+\checkwidth{\small\input{tables/tab_placebo}}
+\input{tables/tab_placebo}
+\end{table}
+
+\paragraph{Realized ordering.} Troughs are \$0.877 (USDC), \$0.886 (DAI), and \$0.992
+(USDT), matching the ex-ante fragility ordering (Figure~\ref{fig:event}a,
+Table~\ref{tab:placebo}). USDC and DAI clear the $1\%$ break threshold, a deviation of at
+least one cent from par, by factors of $12$ and $11$. That threshold is one we set, and the calm-baseline false-positive check of Appendix~\ref{app:excl} tests
+it. USDT does not clear it, so the placebo's
+criterion is satisfied, namely that the exposed coins break and the unexposed coin does
+not. The de-peg printed on material volume: in the frozen Binance
+\texttt{USDCUSDT} klines, the minimum hourly low (\$0.882, 2023-03-11 14:00
+UTC) printed on \$109M of volume in that single hour. The series starts after the trough,
+so it corroborates depth on volume (Section~\ref{sec:setting}). The
+impossibility result holds at every in-window reading, including \$0.882. DAI's break runs through
+its documented USDC exposure (Appendix~\ref{app:dai}).
+
+\paragraph{Redemption concentration.} Address-level redemption concentration is
+$\mathrm{HHI}=0.256$. The larger of the two dominant conduits is labeled
+Coinbase in two public label sets, \texttt{dawsbot/eth-labels} and
+\texttt{brianleect/etherscan-labels}, and carries $40.9$ of the $69.6$ points of volume
+share (rounded here and given to four figures in Appendix~\ref{app:hhi}). The second conduit's Coinbase attribution comes
+from our own on-chain tracing, with no public label. Excluding both conduits leaves the
+index at $0.067$. The no-sybil condition, meaning no entity outside the two dominant conduits
+splits redemptions across multiple funding addresses, is untestable from the public label
+coverage reported in Appendix~\ref{app:hhi}.
+Three distinct quantities are easily conflated here. $40.9\%$ is
+the largest single address's share of captured redemption volume, and $69.6\%$ is the two
+dominant conduits' combined share. A separate figure for USDC's largest monthly arbitrageur,
+reported in~\cite{mzz2025}, uses a different unit and is not a replication
+(Appendix~\ref{app:hhi}).
+
+\paragraph{USDT as the identifying placebo.} USDT was bid to a premium while USDC and DAI
+fell~\cite{Baur_2021}. \$1.24B of \$1.52B in window volume on Coinbase traded above par,
+so the Coinbase premium held on material volume. The premium is
+venue- and time-specific. On Coinbase \texttt{USDT-USD}, it peaked at $+266$~bps at
+02:00~UTC on 11~March, 71 minutes \emph{before} Circle's 03:11~UTC disclosure. The premium
+is a response to the SVB failure itself, because Circle's USDC-specific disclosure
+had not yet been made. In the 02:00~UTC hour, Kraken USDT/USD printed a $+600$-bps high on two
+trades totaling 225 USDT, against a volume-weighted average premium of $+95$~bps for that
+hour. A third peak of $+270$~bps appears in the composite feed at
+19:00~UTC on 13~March. It follows the joint Treasury/Fed/FDIC
+statement of 22:15~UTC on 12~March~\cite{fedtreasfdic2023pressrelease} by 20.8 hours. This
+peak is therefore a post-backstop event and is not the flight-to-safety move the
+identification argument uses. The 02:00~UTC premium is a flight-to-safety signature, and
+no market-wide repricing of stablecoin risk can produce it, because such a repricing would
+move all three coins down together.
+
+\paragraph{Coins excluded from the placebo set.} Three further zero-SVB-exposure coins,
+USDP, GUSD, and BUSD, fail the $1\%$ break test's diagnostic requirement because their
+pre-SVB price feeds already print below \$0.99, and their zero-exposure flow evidence is
+consistent with the placebo result (Appendix~\ref{app:excl}).
+

@@ -1,0 +1,67 @@
+%% FC 2027 submission variant. Anonymized. LLNCS format.
+%% Every numeric claim traces to a results file, mapped in the reproducibility appendix's
+%% claim table. No number is stated that is not in a results file.
+\documentclass[runningheads]{llncs}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+%% array: for >{\raggedright\arraybackslash}p{} in the claim map. Those columns hold
+%% underscore-joined filenames with no interword space, so a justified p{} column has
+%% only \Urlmuskip to stretch and opens visible gaps inside the names. Ragged right
+%% removes the need to stretch at all.
+\usepackage{array}
+%% placeins: for \FloatBarrier at the end of Sections 4 and 6. Both of Section 6's
+%% floats had drifted past Section 7's heading onto later pages, displacing Sections 7
+%% and 8 downward and pushing the Conclusion's last lines past the page limit. Cutting
+%% prose made that worse, because the freed lines let the floats repack further down.
+\usepackage{placeins}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[hidelinks]{hyperref}
+\Urlmuskip=0mu plus 1mu
+\emergencystretch=1.5em
+
+%% Byte-reproducible build. pdfTeX draws the PDF trailer's /ID from random bytes, so two
+%% builds of identical source otherwise differ in hash. An empty \pdftrailerid{} pins it.
+%% The companion half is SOURCE_DATE_EPOCH, set to a fixed constant in paper/Makefile's
+%% fc27 target, which pins /CreationDate and /ModDate. Both are needed: either alone
+%% still leaves the output non-deterministic.
+\pdftrailerid{}
+
+%% Build-time width guard for the table fragments under tables/, errors loudly
+%% (instead of silently overflowing into the margin) if a regenerated fragment no longer
+%% fits \textwidth at \small. Wrap a table's \input with \checkwidth{...} passing the same
+%% size/column-spacing commands the visible copy below it uses.
+\newlength{\tblw}
+\newcommand{\checkwidth}[1]{\settowidth{\tblw}{#1}\ifdim\tblw>\textwidth\GenericError{}{TABLE TOO WIDE}{}{}\fi}
+
+\begin{document}
+
+\title{Non-Fundamental by Impossibility: A Public-Data Bound on Panic and Friction in the March 2023 USDC De-Peg}
+\titlerunning{Non-Fundamental by Impossibility}
+\author{Anonymous Submission to FC 2027}
+\authorrunning{Anonymous Submission}
+\institute{}
+
+\maketitle
+
+\begin{abstract}
+We give a reusable, public-data instrument for a disclosed-impairment de-peg.
+If fundamental value is expected disclosed backing, redemption is at par under solvency,
+and recovery on the impaired fraction $\phi$ lies in $[0,1]$,
+then fundamental value cannot fall below $1-\phi$, and a Corollary extends the floor to
+any monotone-utility valuation. In the March 2023 USDC de-peg, SVB's failure trapped
+about $8\%$ of reserves and the coin fell to \$0.877, below the \$0.92 floor.
+The trough requires unremediated-loss probability $q^{\star}=1.54$, which
+exceeds one. At the disclosed $\phi$, at least $35\%$ of the de-peg is non-fundamental on
+the composite series, and $19$--$35\%$ across feed troughs. The trough is unrationalizable
+for any impairment below $12.3\%$. Hourly evaluation dates the impossibility to nine
+breaching hours on
+11~March. Two supporting analyses stay outside it. A global-games ex-ante fragility
+ordering matches the realized troughs. A specificity panel gives one true positive (USDC,
+2023), one regulator-quantified, issuer-contested episode on which the bound returns no
+verdict (Tether, 2019), and one degenerate
+control (USDT, Terra episode, May 2022, $\phi=0$).
+
+\keywords{Stablecoins \and Bank runs \and Global games \and De-peg \and Financial stability \and Market microstructure}
+\end{abstract}
+

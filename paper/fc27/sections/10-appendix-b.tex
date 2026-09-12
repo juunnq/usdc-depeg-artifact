@@ -1,0 +1,51 @@
+%% ============================================================================
+%% ============================================================================
+\section{DAI's Documented USDC Exposure}
+\label{app:dai}
+
+DAI broke (\$0.886) through a contemporaneously documented exposure to USDC. The break was not a
+separate coordination run, and counting it as one would double-count the USDC run, so this
+appendix does not decompose DAI's $1{,}141$-bps de-peg into mechanical and panic components.
+
+DAI was linked to USDC through MakerDAO's peg-stability module (PSM), which swaps
+USDC$\leftrightarrow$DAI one-for-one up to a debt ceiling, and through USDC held as vault
+collateral. A press report published at 10:10~UTC on 11~March 2023 and web-archived 44 minutes
+later gives two distinct ratios in a single passage~\cite{theblock2023psm}. DAI was ``about 36\%
+backed by USDC, according to daistats'' and the USDC PSM had ``reached its cap of 3.1 billion
+USDC, so no more DAI can be minted with USDC''. Against the on-chain DAI supply at
+2023-03-11 12:00~UTC (\$4.19B), the \$3.1B cap corresponds to $74\%$ of DAI outstanding having
+been minted through the USDC PSM. The $74\%$ is a different quantity from the source's own
+$36\%$ figure, which is a share of total collateral rather than of DAI supply. We report both
+ratios (Table~\ref{tab:dai}) and use neither as a pass-through coefficient, because the two denominators are not
+interchangeable.
+
+Three facts prevent a decomposition. First, the two ratios differ by roughly a factor of two
+and imply mechanical components of $444$ and $912$~bps against the same observed $1{,}141$~bps,
+so any residual would be an artifact of which ratio we choose rather than a measurement.
+Second, the source sentence that reports the \$3.1B also records that the USDC$\to$DAI mint
+leg had reached its cap at the moment we analyze. That leg's arbitrage would
+move DAI's price toward USDC's, so we cannot argue that the PSM raises effective pass-through
+toward $100\%$. Consistent with the cap being binding, DAI traded at or above USDC through the
+de-peg rather than converging to it. Third, we have no on-chain custody reading to compare
+with the reported figure. The PSM's USDC had moved to off-chain custody by 2023, so the
+module and its collateral adapter both hold approximately zero USDC at the run-date block,
+and the \$3.1B stands as a reported debt-ceiling figure.
+
+DAI carried a documented USDC exposure that USDT did not. DAI broke and USDT did not. DAI's
+break is therefore not independent evidence of a second coordination run. We make no claim
+about how much of DAI's $1{,}141$~bps was mechanical.
+
+\begin{table}[t]
+\centering
+\caption{DAI's de-peg and its documented USDC exposure. We report both ratios the single
+contemporaneous source gives, $74\%$ of DAI supply minted through the USDC PSM at its
+\$3.1B cap and the source's own $36\%$ USDC share of DAI collateral, because they have
+different denominators and imply materially different pass-through. We do not select
+between them and report no mechanical/panic split. The \$3.1B is a cited reporting figure
+(The Block, 11 March 2023) with no on-chain corroboration, for the reason given in
+Appendix~\ref{app:dai}.}
+\label{tab:dai}
+\small
+\checkwidth{\small\input{tables/tab_dai}}
+\input{tables/tab_dai}
+\end{table}

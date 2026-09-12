@@ -1,0 +1,26 @@
+% Source: claim_map.yaml, via tables.py::write_tab_claimmap.
+% Do not hand-edit: regenerate with `python tables.py`.
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\Urlmuskip=0mu\relax
+\def\UrlBreaks{\do\_\do\.\do\,\do\-}
+\urlstyle{tt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.4cm}c>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}p{4.0cm}@{}}
+\toprule
+Claim & Sec. & Results file & Key \\
+\midrule
+FIFO burn-attribution rule & \ref{app:hhi} & \path{fifo_rule.json} & \path{matching_window}, \path{tie_break}, \path{truncation} \\
+DAI reported USDC exposure & \ref{app:dai} & \path{number4_dai_contagion.json} & \path{psm_share_of_dai_supply}, \path{source_collateral_share}, \path{no_decomposition} \\
+Specificity panel rows and breach combinations & \ref{sec:sensitivity} & \path{specificity_panel.json} & \path{row1_usdc_march_2023}, \path{row2_tether_2019}, \path{row4_terra_2022} \\
+Terra degenerate control & \ref{sec:sensitivity} & \path{second_event_terra.json} & \path{phi_terra_exposure}, \path{degenerate_caveat} \\
+Excluded-coin calm-baseline evidence & \ref{app:excl} & \path{placebo_excluded_coins.json} & \path{USDP}, \path{GUSD}, \path{BUSD} \\
+Exposure-ordering null probability & \ref{sec:placebo} & \path{ordering_null.json} & \path{probability_as_fraction} \\
+TrueUSD scope-condition deviation & \ref{sec:disc} & \path{tusd_2023.json} & \path{deviation_from_par_bps} \\
+Make-whole pledge timing bound & \ref{sec:ident} & \path{makewhole_timing.json} & \path{circle_makewhole_pledge.by_trough_reference} \\
+Time-value discount on a delayed redemption & \ref{sec:disc} & \path{time_value.json} & \path{discount_bps_range_2to3d} \\
+Trough print volume & \ref{sec:placebo} & \path{trough_volume.json} & \path{volume_in_trough_hour_usdc} \\
+Hour-by-hour panel series for 11 March & \ref{sec:ident} & \path{panel_11mar.json} & \path{panel}, \path{cross_coin_cross_window_summary} \\
+\bottomrule
+\end{tabular}
+\endgroup

@@ -1,0 +1,202 @@
+{
+  "status": "BOUNDED",
+  "interpretation": "address-level HHI is an UPPER BOUND on economic-redeemer concentration; disaggregating the dominant Coinbase custodian (~14,111 senders) strictly lowers it",
+  "n_direct_senders": 776,
+  "upper_bound": {
+    "hhi_raw": 0.25577165541671026,
+    "hhi_normalized": 0.2548113607785383,
+    "top10_share": 0.8805509256335285,
+    "largest_share": 0.40937223394426936,
+    "effective_n": 3.909737372465187,
+    "bootstrap": {
+      "hhi": 0.25577165541671026,
+      "lo": 0.05173497192681819,
+      "hi": 0.418385708166856,
+      "n_wallets": 776,
+      "n_boot": 10000,
+      "seed": 20230311
+    }
+  },
+  "dominant_entity": {
+    "name": "Coinbase",
+    "hot_wallet": "0xa9d1e08c7793af67e9d92fe308d5697fb81d3e43",
+    "conduits": [
+      "0x2cc5146929a893d1d73bc34fb37815cc1a44ae33",
+      "0xad4ac4eb660d2b2d78a062bf136610af15defd80"
+    ],
+    "block_share": 0.6956802895327538,
+    "upstream_senders": 14111
+  },
+  "ex_custodian": {
+    "hhi_raw": 0.06709528319858603,
+    "hhi_normalized": 0.06588842069302146,
+    "largest_share": 0.1681134735675285,
+    "effective_n": 14.904177347910412,
+    "n_senders": 774
+  },
+  "entity_attributed_hhi": "not computed -- no MZZ/Arkham/Nansen label set in repo; the bound + verified Coinbase mapping is the complete result",
+  "mzz_consistency": "consistent -- low, custodial-routed concentration; matches MZZ low USDC arbitrage centralization (~521 arbitrageurs) vs USDT (~6)",
+  "coverage": {
+    "coverage_pct": 89.78296302535323,
+    "gross_burned_usd": 8149837137.120026
+  },
+  "entity_resolved": {
+    "method": "Joins the 776 frozen funding addresses (data/redemptions_by_wallet.csv) against dawsbot/eth-labels and brianleect/etherscan-labels (both lowercased for the join), collapses labelled addresses to normalized entities, and directly tests the manuscript's untested no-sybil assumption on address-level HHI.",
+    "seed": 20230311,
+    "labelled": {
+      "dawsbot": {
+        "n_labelled": 2,
+        "address_share": 0.002577319587628866,
+        "volume_share": 0.41107537632547714
+      },
+      "brianleect": {
+        "n_labelled": 1,
+        "address_share": 0.001288659793814433,
+        "volume_share": 0.0017031423812077881
+      },
+      "union": {
+        "n_labelled": 2,
+        "address_share": 0.002577319587628866,
+        "volume_share": 0.41107537632547714
+      },
+      "note": "Label coverage of the 776 funding addresses is sparse (see counts above) -- the volume share is high only because one of the two largest redeemers happens to carry a direct label; every 'no sybil effect found' result below is bounded by this coverage, not proof the true entity count is smaller."
+    },
+    "entity_normalization_mapping": [
+      {
+        "raw_label": "Circle: Deposit",
+        "normalized_entity": "Circle"
+      },
+      {
+        "raw_label": "Coinbase: Circle Deposit 1",
+        "normalized_entity": "Coinbase"
+      }
+    ],
+    "entity_hhi": {
+      "n_entities": 776,
+      "n_addresses": 776,
+      "hhi_raw": 0.2557716554167102,
+      "hhi_normalized": 0.2548113607785382,
+      "effective_n_entities": 3.909737372465188,
+      "bootstrap": {
+        "hhi": 0.2557716554167102,
+        "lo": 0.05211476444676291,
+        "hi": 0.42546970082411106,
+        "n_wallets": 776,
+        "n_boot": 10000,
+        "seed": 20230311
+      }
+    },
+    "sybil_test": {
+      "n_entities_with_2plus_addresses": 0,
+      "those_entities": {},
+      "combined_volume_share_of_multi_address_entities": 0.0,
+      "hhi_before_merge_address_level": 0.25577165541671026,
+      "hhi_after_merge_entity_level": 0.2557716554167102,
+      "delta": -5.551115123125783e-17,
+      "interpretation": "No labelled entity in this join holds >=2 of the 776 funding addresses, so the merge changes nothing: entity HHI == address HHI to full precision. This does NOT confirm the no-sybil assumption -- it means the label coverage (union_hits above) is too sparse to exercise the test the manuscript needs. A denser resolution (Arkham/Nansen/MZZ) could still find multi-address entities this join cannot see."
+    },
+    "custodian_exclusion": {
+      "all_labelled_exchange_custodian_excluded": {
+        "n_addresses": 775,
+        "hhi_raw": 0.25279708962292907,
+        "hhi_normalized": 0.25183171118574943,
+        "largest_share": 0.4847521096078448,
+        "effective_n": 3.955741743275586,
+        "excluded_wallets": [
+          "0x2cc5146929a893d1d73bc34fb37815cc1a44ae33"
+        ],
+        "classification_basis": {
+          "exchange_custodian_labels_matched": [
+            "coinbase"
+          ],
+          "issuer_labels_excluded_from_custodian_class": [
+            "centre",
+            "circle"
+          ],
+          "note": "Classification is by label/category text actually observed on the 776 addresses: 'coinbase' (dawsbot label) is a third-party exchange/custodian brand. 'circle' / 'centre' name the USDC issuer and its former governing consortium, not a third-party custodian, so those wallets are kept in this exclusion and only removed in the separate issuer-flagged wallet list below."
+        },
+        "issuer_labelled_wallets_not_excluded": [
+          "0x5392bd00571157fa11103b0ee6d492c9563a6799"
+        ]
+      },
+      "coinbase_conduits_excluded_existing_figure": {
+        "n_addresses": 774,
+        "hhi_raw": 0.06709528319858603,
+        "hhi_normalized": 0.06588842069302146,
+        "largest_share": 0.16811347356752843,
+        "effective_n": 14.904177347910412,
+        "basis": "Removes constants.COINBASE_CONDUITS (both conduits), matching the existing results/number2_redemption_hhi.json 'ex_custodian' figure (hhi_raw ~0.0671). This is NOT purely label-driven -- only one of the two conduits carries a direct label in either set (see item 6) -- it reproduces the paper's own on-chain Coinbase attribution for continuity/comparison with (a) above."
+      }
+    },
+    "claim_check": {
+      "conduit_a_larger_40.94pct": {
+        "address": "0x2cc5146929a893d1d73bc34fb37815cc1a44ae33",
+        "in_776_funding_addresses": true,
+        "share_of_volume": 0.40937223394426936,
+        "dawsbot_mainnet": [
+          {
+            "label": "coinbase",
+            "nameTag": "Coinbase: Circle Deposit 1"
+          }
+        ],
+        "brianleect": null,
+        "labelled": true
+      },
+      "conduit_b_smaller_28.63pct": {
+        "address": "0xad4ac4eb660d2b2d78a062bf136610af15defd80",
+        "in_776_funding_addresses": true,
+        "share_of_volume": 0.2863080555884845,
+        "dawsbot_mainnet": null,
+        "brianleect": null,
+        "labelled": false
+      },
+      "coinbase_hotwallet_upstream_aggregator": {
+        "address": "0xa9d1e08c7793af67e9d92fe308d5697fb81d3e43",
+        "in_776_funding_addresses": false,
+        "share_of_volume": null,
+        "dawsbot_mainnet": [
+          {
+            "label": "coinbase",
+            "nameTag": "Coinbase 10"
+          }
+        ],
+        "brianleect": {
+          "name": "Coinbase 10",
+          "labels": [
+            "coinbase"
+          ]
+        },
+        "labelled": true
+      },
+      "finding": "The larger conduit (conduit_a, 40.94% of volume) IS labelled 'Coinbase: Circle Deposit 1' (dawsbot, category 'coinbase') -- a direct, unambiguous label-set corroboration of the manuscript's Coinbase attribution for that address. The smaller conduit (conduit_b, 28.63% of volume) is UNLABELLED in both sets. COINBASE_HOTWALLET is not itself one of the 776 funding addresses (it is the documented upstream aggregator feeding the conduits), but where it does appear in the label data it IS tagged 'Coinbase 10' / category 'coinbase' in both sets, corroborating constants.py's identification of the hot wallet. Net: the label data corroborates the manuscript's Coinbase attribution for the hot wallet and for 40.94 of the 69.57 claimed points, but does NOT independently corroborate the remaining 28.63-point conduit -- that attribution rests on the paper's own on-chain tracing (constants.py), not on either public label set."
+    },
+    "unlabelled_tail": {
+      "largest_unlabelled_wallet": "0xad4ac4eb660d2b2d78a062bf136610af15defd80",
+      "largest_unlabelled_share": 0.2863080555884845,
+      "label_consistent_supremum_hhi": 0.9965995166255257,
+      "label_consistent_supremum_assumption": "N7 ruling C5: the ENTIRE unlabelled tail (776 - |union_hits| addresses) merges WITH the one externally labelled custodian (conduit_a, 'Coinbase: Circle Deposit 1') into a single entity -- nothing in either label set rules this out at 2/776 coverage. The other independently labelled address (the issuer wallet) is held separate. This REPLACES a prior worst_case_single_entity_hhi construction (~0.5144) that merged only the unlabelled tail among itself while holding conduit_a separate -- a weaker, inconsistent worst case. With coverage this sparse, the entity HHI is bounded only by our own attribution, not by evidence: we claim no worst-case cap."
+    },
+    "externally_corroborated_share": 40.94,
+    "own_tracing_share": 28.63,
+    "no_sybil_status": "untestable with public labels (coverage 2/776)",
+    "drop_conduit_b_only_hhi": 0.34121378244942246,
+    "sybil_detection_power": {
+      "2": 3.325573661456601e-06,
+      "3": 9.976720984369804e-06,
+      "10": 0.00014965081476554706
+    },
+    "sybil_detection_power_discrepancy_vs_adversarial_review": {
+      "adversarial_review_figures": {
+        "2": 6.6e-06,
+        "3": 2e-05,
+        "10": 0.00029
+      },
+      "recomputation": {
+        "2": 3.325573661456601e-06,
+        "3": 9.976720984369804e-06,
+        "10": 0.00014965081476554706
+      },
+      "note": "The adversarial review's cited figures match a WITH-replacement binomial approximation (p = K/N per address); this module's figures are the exact hypergeometric (sampling WITHOUT replacement from the fixed 776-address population, the correct model here). The binomial approximation overstates detection power by ~2x at K=2 coverage. Reporting the exact figure, flagged rather than silently trusting the adversarial review's arithmetic."
+    }
+  }
+}

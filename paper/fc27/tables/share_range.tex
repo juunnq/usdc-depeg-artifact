@@ -1,0 +1,19 @@
+% Source: results/phi_denominator_sensitivity.json --
+%   Sentence 1: feed_trough_only_at_phi_0.08 (added to
+%     phi_denominator_sensitivity.py and regenerated; restricted to the four genuinely
+%     distinct price feeds, excluding composite_second_lowest which is a second print
+%     within the composite feed, not a fifth feed): s_nf0_min=0.1919 (kraken_close_min),
+%     s_nf0_max=0.3513 (composite_min_headline).
+%   Sentence 2: full grid[] range across all 3 phi conventions x 5 trough readings
+%     (min/max of grid[].s_nf0): 0.1667 (phi=0.0825, kraken_close_min) to 0.3643
+%     (phi=0.0784, composite_min_headline). Pinned by
+%     tests/test_phi_denominator_sensitivity.py::test_feed_trough_only_at_phi_08_excludes_second_composite_print
+%     and ::test_broader_grid_range_includes_non_feed_cells.
+At $\phi=0.08$, restricted to the four price feeds' own troughs (composite, Kraken close,
+Kraken VWAP, and Binance/USDT-deflated), the non-fundamental share $s_{\mathrm{nf}}(0)$ ranges from
+$19.2\%$ (Kraken close) to $35.1\%$ (composite).
+A broader sensitivity range should not be conflated with it. That range runs over the
+full grid of three $\phi$ conventions (0.0784, 0.08, 0.0825) and all five
+trough readings, which add the composite feed's second-lowest print
+($\$0.8949$) to the four feed troughs above.
+It spans $16.7\%$ to $36.4\%$.

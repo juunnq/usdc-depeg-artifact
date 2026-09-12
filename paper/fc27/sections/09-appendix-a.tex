@@ -1,0 +1,69 @@
+%% ============================================================================
+\section{Redemption Concentration}
+\label{app:hhi}
+
+We measure redemption concentration on-chain (Section~\ref{sec:setting}) to ask whether a
+few large arbitrageurs caused the run. We attribute USDC burns to the external deposits that
+funded them by first-in-first-out matching, so every counted dollar corresponds to a burn.
+This attribution covers $89.8\%$ of the \$8.15B gross burned. The remaining $10.2\%$
+is the pre-window remainder, burns whose funding deposit arrived before the frozen
+window opens. Over the $776$ funding addresses,
+Table~\ref{tab:hhi} reports both the raw index, $\mathrm{HHI}=\sum_i s_i^2$ over
+redemption-volume shares $s_i$, and a size-corrected normalized variant,
+$(\mathrm{HHI}-1/N)/(1-1/N)$, which removes the floor a finite $N$ imposes. At $N=776$, the two
+differ by under $0.001$ ($0.2558$ raw vs.\ $0.2548$ normalized). We therefore report the raw index
+throughout, and an unqualified ``HHI'' means raw. Redemption outflow accompanied the de-peg: USDC's circulating supply fell from
+\$43.29B on 7~March to \$35.90B on 18~March, a \emph{net} decline of \$7.39B, or $17.1\%$, over
+the window. The \$8.15B above is \emph{gross} burns, which exceed the net decline because
+minting continued through the window.
+
+\begin{table}[t]
+\centering
+\caption{Redemption concentration, with an entity-resolved block. The top block reports
+address-level figures, and the entity-resolved block joins the 776 funding addresses
+against two public label sets (dawsbot/eth-labels, brianleect/etherscan-labels), which
+together resolve 2 of 776 addresses: the larger conduit (40.9\% of volume) carries an
+external Coinbase label, and the smaller (28.6\%) does not, so its Coinbase attribution
+rests on the paper's own on-chain tracing. At this coverage no entity holds two or more of
+the 776 addresses, so entity HHI equals address HHI to full precision, which means the
+label evidence is too sparse to test the no-sybil condition.}
+\label{tab:hhi}
+\small
+\checkwidth{\small\input{tables/tab_hhi}}
+\input{tables/tab_hhi}
+\end{table}
+
+\paragraph{Upper bound on ultimate-redeemer concentration.} The two largest funding addresses
+($69.6\%$ of captured volume) are single-source routing conduits that are both funded by one
+Coinbase hot wallet, which itself aggregates $14{,}111$ distinct senders. At the
+presenting-entity level, Coinbase's $69.6\%$ implies an entity HHI near $0.49$. That
+concentration measures a custodian's pass-through volume, but the claim here concerns
+\emph{ultimate redeemers}. Disaggregating a custodian strictly lowers an HHI, so the
+address-level figure is an upper bound on ultimate-redeemer concentration \emph{under a
+no-sybil condition}: no entity outside the two dominant conduits splits its burns across
+multiple funding addresses~\cite{Victor_2020}.
+
+\begin{sloppypar}
+Two public label sets (\texttt{dawsbot/eth-labels} and
+\texttt{brianleect/etherscan-labels}) resolve only $2$ of the $776$ funding
+addresses, so the no-sybil condition remains \emph{untestable}. At that coverage, the join
+would detect a two-address entity with probability $3.33\times10^{-6}$. A null result from
+that join is therefore uninformative. The larger conduit ($40.94\%$ of volume) carries the external label
+``Coinbase: Circle Deposit 1''. The smaller ($28.63\%$) is unlabeled in both sets, and its
+Coinbase attribution comes from our own on-chain tracing (Section~\ref{sec:setting}). The two sum to $69.57\%$, which the prose rounds to $69.6\%$
+throughout. Excluding only the externally labeled custodian leaves the index at $0.2528$, and the
+drop to $0.0671$ requires excluding the self-attributed, unlabeled conduit as well. We
+therefore report $0.0671$ as conditional on our own attribution, and $0.2528$ as the
+label-only floor. No informative worst-case cap follows from the label evidence: at that coverage, the
+label-consistent supremum is $0.9966$. That supremum merges the entire unlabeled tail with the
+one labeled custodian, so only our own attribution bounds the entity HHI.
+\end{sloppypar}
+
+Ma--Zeng--Zhang~\cite{mzz2025} report $521$ redeeming arbitrageurs per month for USDC
+against $6$ for USDT, with USDC's largest single arbitrageur executing $45\%$ of monthly redemptions
+against USDT's $66\%$. That is a different dataset and a different unit from our $40.9\%$ and
+$69.6\%$ address-volume shares, so it does not replicate them. The
+external label covers $40.9$ of the $69.6$ points of volume share. Within that share,
+redemption ran through custodial conduits rather than through a few large arbitrageurs.
+Beyond it, the same conclusion follows from our own attribution, with no external evidence
+behind it.

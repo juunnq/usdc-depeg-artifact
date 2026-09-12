@@ -1,0 +1,26 @@
+% Source: claim_map.yaml, via tables.py::write_tab_claimmap.
+% Do not hand-edit: regenerate with `python tables.py`.
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\Urlmuskip=0mu\relax
+\def\UrlBreaks{\do\_\do\.\do\,\do\-}
+\urlstyle{tt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.4cm}c>{\raggedright\arraybackslash}p{2.9cm}>{\raggedright\arraybackslash}p{4.0cm}@{}}
+\toprule
+Claim & Sec. & Results file & Key \\
+\midrule
+Worst-case floor and implied unremediated-loss probability & \ref{sec:ident} & \path{number1b_rational_bound.json} & \path{p_obs}, \path{floor_worstcase}, \path{implied_failure_prob_rho0} \\
+Non-fundamental share, lower edge and band & \ref{sec:ident} & \path{number1_nonfundamental_share.json} & \path{headline_band.low}, \path{headline_band.high} \\
+Denominator sensitivity of phi and the share & \ref{sec:ident} & \path{phi_denominator_sensitivity.json} & \path{phi_conventions}, \path{grid}, \path{feed_trough_only_at_phi_0.08} \\
+Dated impossibility window and per-coin firing counts & \ref{sec:ident} & \path{impossibility_window.json} & \path{impossibility_region_usdc}, \path{coins.USDC.independence.effective_n} \\
+Dilution-adjusted phi(t) and its interpolation band & \ref{sec:sensitivity} & \path{phi_dynamic.json} & \path{variant_i}, \path{interpolation_band}, \path{firing_set} \\
+Cross-feed trough corroboration and below-floor depth & \ref{sec:sensitivity} & \path{trough_corroboration.json} & \path{firing_report}, \path{below_floor_depth}, \path{independence} \\
+Hourly observation counts per coin & \ref{app:repro} & \path{hourly_counts.json} & \path{per_coin}, \path{window.expected_hours} \\
+Cross-coin placebo troughs and break threshold & \ref{sec:placebo} & \path{number3_placebo.json} & \path{USDC}, \path{DAI}, \path{USDT}, \path{break_threshold} \\
+USDT premium depth and timing & \ref{sec:placebo} & \path{usdt_premium.json} & \path{max_premium_bps}, \path{premium_volume_usdt} \\
+USDT premium peak timestamps by venue & \ref{sec:placebo} & \path{usdt_premium_timing.json} & \path{peaks.coinbase_usdt_usd}, \path{peaks.composite_usdt} \\
+Redemption concentration and entity resolution & \ref{app:hhi} & \path{number2_redemption_hhi.json} & \path{upper_bound.hhi_raw}, \path{entity_resolved}, \path{coverage} \\
+\bottomrule
+\end{tabular}
+\endgroup

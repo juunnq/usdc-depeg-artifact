@@ -1,0 +1,19 @@
+% Source: results/number4_dai_contagion.json --
+%   usdc_depeg_bps (1233.3 -> 1233); observed_dai_depeg_bps (1140.6 -> 1141);
+%   dai_total_supply_usd (4193955100.3838315 -> $4.19B); reported_psm_usdc (3100000000.0 -> $3.1B);
+%   psm_share_of_dai_supply (0.7391590815353001 -> 74%); source_collateral_share (0.36 -> 36%).
+%   NO decomposition row: see the no_decomposition key in the same results file.
+%   D19: the on_chain_psm_usdc_total row is retracted, not read here -- see
+%   write_tab_dai docstring.
+\begin{tabular}{@{}p{6.4cm}p{4.0cm}@{}}
+\toprule
+Quantity & Value \\
+\midrule
+USDC de-peg (trough, composite) & $1233$~bps \\
+Observed DAI de-peg (trough, composite) & $1141$~bps \\
+On-chain DAI supply, run-date block & \$4.19B \\
+Reported PSM-USDC-A cap, 11 Mar 2023 & \$3.1B \\
+\quad as a share of DAI supply & $74\%$ \\
+Reported USDC share of DAI collateral & $36\%$ \\
+\bottomrule
+\end{tabular}

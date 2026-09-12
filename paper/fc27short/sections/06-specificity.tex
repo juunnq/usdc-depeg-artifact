@@ -1,0 +1,37 @@
+\section{Specificity}
+\label{sec:spec}
+
+The estimator requires three preconditions. First~(i), $\phi$ must be publicly
+quantified while the exposure is unresolved. Second~(ii), the price must fall more
+than $1\%$ below par while that disclosure is live. Third~(iii), the fundamental
+channel must be reserve-only, so that $1-\phi$ is the floor. We screened seven
+candidates: BUSD, Tether~(2022), DAI~(2020), USDR, USDP, GUSD, and TUSD. None
+satisfies all three. Each fails in one of two ways: no disclosed impairment, or
+a loss measured under a different valuation model. Issuers with a material impairment
+did not disclose its size in any of the seven screened cases, so one qualifying
+episode is a property of the disclosure record.
+
+The panel gives one true
+positive in USDC~(2023), one regulator-quantified, issuer-contested episode in
+Tether~(2019) on which the bound returns no verdict, and one degenerate control in
+USDT, Terra episode (May 2022). Tether's episode is assessed under
+precondition~(i). The New York Attorney General's 25~April 2019 statement quantified
+Tether's exposure and Tether contested the characterization. The statement implies
+$\phi\in[0.259,0.332]$. The deepest post-disclosure Kraken USDT/USD print, \$0.9551
+on 26~April 2019, is 21.4 to 28.8 cents above every worst-case floor, and
+$q^{\star}\in[0.135,0.174]$ (Table~\ref{tab:panel}). We read both the USDC row and
+the Tether row at zero recovery on the impaired reserves, so the same one-sided bound
+governs both. The Terra row carries $\phi=0$, so its floor is par, $q^{\star}$ is
+undefined, and the row is not counted.
+
+Read strictly, precondition~(i) demands the issuer's own public quantification while
+the exposure is unresolved, and under that reading the panel contains no validated
+true negative. One episode on which the bound returns no verdict does not measure a
+false-positive rate. The specificity of the bound is unmeasured.
+
+TrueUSD carried an unremediated reserve impairment during our window that was not
+publicly quantified until a September 2024 SEC complaint~\cite{sectruecoin2024}, so the
+estimator would draw $\phi=0$ from its contemporaneous attestations. That is the Terra
+row's degenerate case, so the bound returns no verdict. We
+define the residual relative to what the market could know, because a concealed
+impairment produces no detectable signal by construction.

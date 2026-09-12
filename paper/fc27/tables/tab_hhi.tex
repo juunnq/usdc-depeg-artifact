@@ -1,0 +1,50 @@
+% Source: results/number2_redemption_hhi.json --
+%   upper block (unchanged from the current manuscript tab:hhi):
+%     n_direct_senders; coverage.coverage_pct; upper_bound.{hhi_raw, hhi_normalized,
+%     top10_share, largest_share, effective_n, bootstrap.{lo,hi}}; ex_custodian.{hhi_raw,
+%     largest_share, effective_n}.
+%   entity-resolved block (entity_resolved key):
+%     labelled.union.{n_labelled, address_share} (coverage 2/776); externally_corroborated_share;
+%     own_tracing_share; no_sybil_status; entity_hhi.{hhi_raw, bootstrap.{lo,hi}};
+%     custodian_exclusion.all_labelled_exchange_custodian_excluded.hhi_raw;
+%     custodian_exclusion.coinbase_conduits_excluded_existing_figure.hhi_raw (reproduces the
+%     ex-custodian row above under entity resolution, for continuity -- same underlying figure,
+%     not a second independent number); unlabelled_tail.{label_consistent_supremum_hhi,
+%     label_consistent_supremum_assumption}.
+% CONFIRMED: the old worst-case "0.577" figure does not appear anywhere in the live JSON
+% (grep across usdc_depeg/results/ and paper/ returns no match) -- correctly
+% identifies it as false, and it is absent, not merely uncited. Not reintroduced here.
+% Width pass: Statistic/Value are both p{} (was p{8.4cm}r -- the old 'r' column
+% could not wrap and let the 'No-sybil condition' prose row set the table's true
+% width). Row labels trimmed to what the JSON itself supports; the longer
+% constructions they drop (the entity-resolved section's own label-set names, the
+% supremum row's 'entire unlabelled tail merged with...' clause) are unchanged in
+% fc27.tex's existing tab:hhi caption, so no information is lost, only de-duplicated.
+\begin{tabular}{@{}p{6.5cm}p{2.6cm}@{}}
+\toprule
+Statistic & Value \\
+\midrule
+Wallets (redeemers) & 776 \\
+Coverage of gross burns & 89.8\% \\
+HHI (raw) & 0.2558 \\
+HHI (normalized) & 0.2548 \\
+Top-10 share & 88.1\% \\
+Largest share & 40.9\% \\
+Effective \# redeemers ($1/\mathrm{HHI}$) & 3.9 \\
+Bootstrap 95\% CI (HHI) & $[0.0517,\,0.4184]$ \\
+\midrule
+HHI, ex-custodian & 0.0671 \\
+Largest share, ex-custodian & 16.8\% \\
+Effective \# redeemers, ex-custodian & 14.9 \\
+\midrule
+\multicolumn{2}{@{}l}{\textit{Entity-resolved (public label join)}} \\
+Labelled coverage & 2/776 \\
+Externally corroborated share & 40.94\% \\
+Own-tracing share & 28.63\% \\
+Entity HHI (0 multi-address entities) & 0.2558 \\
+No-sybil condition & untestable with public labels \\
+HHI, labelled custodians excluded & 0.2528 \\
+HHI, both Coinbase conduits excluded & 0.0671 \\
+Supremum worst case & 0.9966 \\
+\bottomrule
+\end{tabular}

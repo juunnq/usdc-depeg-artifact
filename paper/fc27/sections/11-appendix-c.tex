@@ -1,0 +1,77 @@
+%% ============================================================================
+\section{Reproducibility}
+\label{app:repro}
+
+All results derive from a frozen snapshot cataloged in Table~\ref{tab:data}, whose source
+URLs come from the data manifest, which also records a SHA-256 digest for every file it
+lists. Every stochastic routine is seeded
+($\mathrm{SEED}=20230311$).
+
+The hourly coverage is not uniform across coins. USDC is missing 4 of 216 expected hourly
+points (17:00~UTC on 13~March, 14:00~UTC on 14~March, 17:00~UTC on 14~March, and 12:00~UTC
+on 15~March), DAI 2 of 216 (17:00~UTC on 13~March and 16:00~UTC on 14~March), and USDT 3 of
+216 (20:00~UTC on 11~March, 17:00~UTC on 13~March, and 17:00~UTC on 14~March). One hour,
+17:00~UTC on 13~March, is missing from all three.
+
+\begin{table}[t]
+\centering
+\caption{Frozen data snapshot. Every row's count is read directly from the file itself.
+The 212/213/214-point spread across USDC/DAI/USDT in row 1 reflects independent gaps in the
+upstream aggregator's per-coin coverage, enumerated in the text above.}
+\label{tab:data}
+\small
+\checkwidth{\small\input{tables/tab_sources}}
+\input{tables/tab_sources}
+\end{table}
+
+Every reported number and figure regenerates from this snapshot via the following command
+sequence: \texttt{python data\_fetch.py verify} $\to$ \texttt{python data\_fetch\_n1.py
+verify} $\to$ \texttt{python redemptions.py --from-frozen} $\to$ \texttt{python -m pytest}
+$\to$ \texttt{python report.py}. None of these five steps makes a network call or reads
+\texttt{ETHERSCAN\_API\_KEY}, and none can overwrite a file already recorded in the data
+manifest. \texttt{make fc27} also pins \texttt{SOURCE\_DATE\_EPOCH} to
+a fixed constant and the PDF trailer \texttt{/ID} via \texttt{\textbackslash
+pdftrailerid\{\}}, so the typeset PDF is byte-reproducible.
+Tables~\ref{tab:claimmap} and~\ref{tab:claimmapb} name the file and key behind each.
+
+Acquisition is a separate step and requires network access. Six scripts wrote the frozen
+snapshot. \texttt{data\_fetch.py}, \texttt{data\_fetch\_n1.py}, \texttt{second\_event.py},
+and \texttt{usdt\_premium.py} are keyless. \texttt{redemptions.py} and
+\texttt{dai\_contagion.py} also require an Etherscan key. The key is read from the
+environment only and is never written to any artifact. Re-running any of the six against
+live data contacts an external API and overwrites the corresponding frozen file. The
+reproduction sequence above does not require this step and should not begin with it.
+
+The FIFO burn attribution underlying \texttt{data/redemptions\_by\_wallet.csv} is not
+reproducible offline. We freeze and hash the attribution's \emph{output}, a 776-row
+wallet-to-volume table. We do not freeze its input, the raw on-chain transfer logs the
+attribution FIFO-matches. \texttt{redemptions.py --from-frozen} re-validates that frozen
+output against its own manifest record. It does not repeat the attribution. The \$3.1B
+PSM figure (Appendix~\ref{app:dai}) and the two public label sets
+(Appendix~\ref{app:hhi}) are reporting-based in the same way: we freeze and hash what
+they state, and the pipeline does not recompute them.
+
+\begin{table}[t]
+\centering
+\caption{Claim map, first half. Each reported quantity, the results file it regenerates
+from, and the key within that file. Both the file and the key are checked against the
+results files themselves, and the section column is a cross-reference rather than a
+typed number, so neither can drift.}
+\label{tab:claimmap}
+\scriptsize
+\checkwidth{\scriptsize\input{tables/tab_claimmap}}
+\input{tables/tab_claimmap}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Claim map, second half. Columns as in Table~\ref{tab:claimmap}.}
+\label{tab:claimmapb}
+\scriptsize
+\checkwidth{\scriptsize\input{tables/tab_claimmap_b}}
+\input{tables/tab_claimmap_b}
+\end{table}
+
+An anonymized artifact repository is available at
+\url{https://anonymous.4open.science/r/usdc-depeg-artifact-F62D/}.
+
